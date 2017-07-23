@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+set -e
+
+function convert() {
+    echo "$1" | sed 's/sass/css/g'
+}
+
+BUILD_DIR=build/sass
+RESOURCES_DIR=web-resources/sass
+INPUT_DIR=static/sass
+INTERMEDIATE_DIR=$(convert "$BUILD_DIR")
+OUTPUT_DIR=$(convert "$INPUT_DIR")
+
+mkdir -p $BUILD_DIR $INTERMEDIATE_DIR
+
+cp -R $RESOURCES_DIR/ $BUILD_DIR/
+cp -R $INPUT_DIR/ $BUILD_DIR/
+
+for file in $(ls $BUILD_DIR/**/[^_]*.sass); do
+    sassc --style expanded $file > $(convert "$file")
+done
+
+cp -R $INTERMEDIATE_DIR/ $OUTPUT_DIR/

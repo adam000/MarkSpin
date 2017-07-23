@@ -1,0 +1,3 @@
+[submodule "web-resources"]
+	path = web-resources
+	url = git@github.com:adam000/web-resources.git

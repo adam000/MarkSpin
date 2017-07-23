@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+PROJECT_NAME=markspin
+
+docker build -t $PROJECT_NAME .
+docker run -p 8080:8080 $PROJECT_NAME

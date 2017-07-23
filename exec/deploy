@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+set -e
+
+echo "Building resources..."
+exec/build-resources
+
+echo "Deploying..."
+gcloud app deploy --configuration=markspin
